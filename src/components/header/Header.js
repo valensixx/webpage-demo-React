@@ -1,10 +1,23 @@
 import React from "react";
 import "./Header.css";
 
-export default function Header(){
-    return(
-        <div>
+
+const Header = () => {
+    return (
+        <header>
             <h1>This is the header</h1>
-        </div>
+        </header>
+    )
+}
+
+export default Header;
+
+/*function Header(){
+    return(
+        <header>
+            <h1>This is the header</h1>
+        </header>
     );
 }
+
+export default Header; */
