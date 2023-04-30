@@ -16,8 +16,8 @@ function Home() {
         { brand: "BMW", model: "320", img: "/3.jpg", horsePower: "150hp" }
     ];
     return (
-        <div style={{padding:20}}>
-            {cars.map(c => <CarCard {...c} path="/images/" />)}
+        <div style={{padding:20, display:"flex", justifyContent:"space-between", flexWrap:"wrap"}}>
+            {cars.map(c => <CarCard {...c} path="/images/" width={"40%"} />)}
         </div>
     );
 }
