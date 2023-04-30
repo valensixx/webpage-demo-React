@@ -1,4 +1,4 @@
-import React,{useEffect, useState, useRef} from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 /*TASK 5 
 Make request to https://reqres.in/api/users and show user's name,
@@ -7,34 +7,34 @@ Add parameter page, as it will have 2 pages.
 Create the pages
 */
 
-export default function APIRequest(){
+export default function APIRequest() {
     const [users, setUsers] = useState([]);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
 
-    useEffect(()=>{
+    useEffect(() => {
         fetch('https://reqres.in/api/users?page=' + page)
             .then(response => response.json())
             .then(response => {
                 setTotalPages(response.total_pages);
                 setUsers(response.data);
             });
-    },[page]);
+    }, [page]);
 
-    function renderTr(user){
-        return(
-            <tr>
+    function renderTr(user, index) {
+        return (
+            <tr key={index}>
                 <td>{user.id}</td>
                 <td>{user.email}</td>
                 <td>{user.first_name} {user.last_name}</td>
                 <td>
-                    <img src={user.avatar}/>
+                    <img src={user.avatar} />
                 </td>
             </tr>
         );
     }
 
-    return(
+    return (
         <div>
             <table border={1}>
                 <thead>
@@ -54,7 +54,7 @@ export default function APIRequest(){
                     </tr>
                 </thead>
                 <tbody>
-
+                    {users.map(renderTr)}
                 </tbody>
             </table>
         </div>
