@@ -10,15 +10,14 @@ create array of elements - {brand:"", model:"", image:"",horsePower:""} */
 const imagePath = "/images";
 
 function Home() {
-    
     const cars = [
-        { brand: "Mercedes", model: "ML", image: "/images/1.jpg", horsePower: "250hp" },
-        { brand: "Audi", model: "A8", image: "/images/2.jpg", horsePower: "200hp" },
-        { brand: "BMW", model: "320", image: "/images/3.jpg", horsePower: "150hp" }
+        { brand: "Mercedes", model: "ML", img: "/1.jpg", horsePower: "250hp" },
+        { brand: "Audi", model: "A8", img: "/2.jpg", horsePower: "200hp" },
+        { brand: "BMW", model: "320", img: "/3.jpg", horsePower: "150hp" }
     ];
     return (
         <div>
-            {cars.map(c => <CarCard {...c} />)}
+            {cars.map(c => <CarCard {...c} path="/images/" />)}
         </div>
     );
 }
