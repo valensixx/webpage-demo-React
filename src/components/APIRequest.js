@@ -34,6 +34,20 @@ export default function APIRequest() {
         );
     }
 
+    function renderPages() {
+        const pages = [];
+        for (let i = 1; i <= totalPages; i++) {
+            pages.push(
+                <li onClick={() => setPage(i)} key={i}>{i}</li>
+            );
+        }
+        return (
+            <ul>
+                {pages}
+            </ul>
+        );
+    }
+
     return (
         <div>
             <table border={1}>
@@ -57,6 +71,7 @@ export default function APIRequest() {
                     {users.map(renderTr)}
                 </tbody>
             </table>
+            {renderPages()}
         </div>
     );
 }
