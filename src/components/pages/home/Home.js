@@ -1,6 +1,7 @@
 import React from "react";
-import "../home/Home.css";
 import withLayout from "../../layouts/withLayout";
+import "../home/Home.css";
+
 
 function Home(){
     return(

@@ -4,7 +4,7 @@ import Menu from "../menu/Menu";
 import Footer from "../footer/Footer";
 
 export default function withLayout(Component){
-    const layout = (props) => {
+    function layout(props){
         return(
             <>
                 <Header />
