@@ -2,6 +2,7 @@ import React from "react";
 import Home from "./components/pages/home/Home";
 import Quotes from "./components/Quotes";
 import FocusBtn from "./components/FocusBtn";
+import APIRequest from "./components/APIRequest";
 
 /*TASK 1 
 Create Layout with components - Header, Menu, Footer 
@@ -36,6 +37,7 @@ export default function App() {
       <Home />
       <Quotes />
       <FocusBtn />
+      <APIRequest />
     </div>
   );
 }
