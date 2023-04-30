@@ -17,7 +17,7 @@ function Home() {
     ];
     return (
         <div style={{padding:20, display:"flex", justifyContent:"space-between", flexWrap:"wrap"}}>
-            {cars.map(c => <CarCard {...c} path="/images/" width={"40%"} />)}
+            {cars.map(c => <CarCard {...c} path="/images/" width={"30%"} />)}
         </div>
     );
 }
