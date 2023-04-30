@@ -16,7 +16,7 @@ function Home() {
         { brand: "BMW", model: "320", img: "/3.jpg", horsePower: "150hp" }
     ];
     return (
-        <div>
+        <div style={{padding:20}}>
             {cars.map(c => <CarCard {...c} path="/images/" />)}
         </div>
     );
