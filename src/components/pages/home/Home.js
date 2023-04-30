@@ -7,6 +7,7 @@ function Home(){
     return(
         <main>
             <h1>Hello form Home!</h1>
+            <img src ={"/images/1.jpg"}/>
         </main>
     );
 }
