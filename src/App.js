@@ -1,5 +1,6 @@
 import React from "react";
 import Home from "./components/pages/home/Home";
+import Quotes from "./components/Quotes";
 
 /*TASK 1 
 Create Layout with components - Header, Menu, Footer 
@@ -19,6 +20,7 @@ export default function App() {
   return (
     <div>
       <Home />
+      <Quotes />
     </div>
   );
 }
