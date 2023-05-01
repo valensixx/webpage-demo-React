@@ -5,12 +5,16 @@ Make request to https://reqres.in/api/users and show user's name,
 user's email and image in table.
 Add parameter page, as it will have 2 pages.
 Create the pages
+
+Task 6
+add preview button. On click to do request to https://reqres.in/api/users{id}
 */
 
 export default function APIRequest() {
     const [users, setUsers] = useState([]);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
+    const [user, setUser] = useState(null);
 
     useEffect(() => {
         fetch('https://reqres.in/api/users?page=' + page)
@@ -29,6 +33,15 @@ export default function APIRequest() {
                 <td>{user.first_name} {user.last_name}</td>
                 <td>
                     <img src={user.avatar} />
+                </td>
+                <td>
+                    <button onClick={()=>{
+                        fetch(`https://reqres.in/api/users/${user.id}`)
+                            .then(response => response.json())
+                            .then(response => {
+                                console.log(response);
+                            })
+                    }}>Preview</button>
                 </td>
             </tr>
         );
@@ -64,6 +77,9 @@ export default function APIRequest() {
                         </td>
                         <td>
                             Image:
+                        </td>
+                        <td>
+                            Preview:
                         </td>
                     </tr>
                 </thead>
