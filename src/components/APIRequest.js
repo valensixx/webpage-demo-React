@@ -45,31 +45,7 @@ export default function APIRequest() {
             })
     }
 
-    function renderPages() {
-
-    }
-
-    function renderTable() {
-        return (
-            <>
-                <div>
-                    <input type="text" onInput={(e) => {
-                        let input = e.target.value;
-                        if (input.length > 0) {
-                            const filteredUsers = userInitials.filter(user => user.email.includes(input));
-                            setUsers([...filteredUsers]);
-                        }
-                        else {
-                            setUsers([...userInitials]);
-                        }
-                    }} />
-                </div>
-
-                {renderPages()}
-            </>
-        );
-    }
-
+  
     function renderUser() {
         return (
             <>
