@@ -34,30 +34,17 @@ export default function APIRequest() {
             });
     }, [page]);
 
-    function handalePreview(userId){
+    function handalePreview(userId) {
         fetch(`https://reqres.in/api/users/${userId}`)
-        .then(response => response.json())
-        .then(response => {
-            //console.log(response);
-            setUser(response.data);
-        })
+            .then(response => response.json())
+            .then(response => {
+                //console.log(response);
+                setUser(response.data);
+            })
     }
 
     function renderPages() {
-        const pages = [];
-        for (let i = 1; i <= totalPages; i++) {
-            pages.push(
-                <li className="page-button"
-                    style={{ cursor: 'pointer' }}
-                    onClick={() => setPage(i)} key={i}>{i}
-                </li>
-            );
-        }
-        return (
-            <ul>
-                {pages}
-            </ul>
-        );
+        
     }
 
     function renderTable() {
@@ -68,14 +55,14 @@ export default function APIRequest() {
                         let input = e.target.value;
                         if (input.length > 0) {
                             const filteredUsers = userInitials.filter(user => user.email.includes(input));
-                            setUsers([...filteredUsers]); 
+                            setUsers([...filteredUsers]);
                         }
-                        else{
+                        else {
                             setUsers([...userInitials]);
                         }
                     }} />
                 </div>
-             
+
                 {renderPages()}
             </>
         );
@@ -97,9 +84,9 @@ export default function APIRequest() {
 
     return (
         <div>
-            {user === null && <Table users={users} handalePreview={(userId)=>{
-                handalePreview(userId)
-            }}></Table>}
+            {user === null && <Table
+                users={users} handalePreview={(userId) => { handalePreview(userId) }}>
+            </Table>}
             {user !== null && renderUser()}
         </div>
     );
