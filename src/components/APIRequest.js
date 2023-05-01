@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import Table from "./Table";
 import Pagenation from "./Pagenation";
+import Filters from "./Filters";
 
 /*TASK 5 
 Make request to https://reqres.in/api/users and show user's name,
@@ -45,7 +46,7 @@ export default function APIRequest() {
     }
 
     function renderPages() {
-        
+
     }
 
     function renderTable() {
@@ -83,13 +84,28 @@ export default function APIRequest() {
         );
     }
 
+    function onInput(e) {
+        let input = e.target.value;
+        if (input.length > 0) {
+            const filteredUsers = userInitials.filter(user => user.email.includes(input));
+            setUsers([...filteredUsers]);
+        }
+        else {
+            setUsers([...userInitials]);
+        }
+    }
+
     return (
         <div>
-            {user === null && <Table
-                users={users} handalePreview={(userId) => { handalePreview(userId) }}>
-                    <Pagenation totalPages = {totalPages} setPage={(i)=> setPage(i)} />
-            </Table>}
-            {user !== null && renderUser()}
+            {user === null &&
+                <>
+                    <Filters onInput={(e) => onInput(e)} />
+                    <Table
+                        users={users} handalePreview={(userId) => { handalePreview(userId) }}>
+                        <Pagenation totalPages={totalPages} setPage={(i) => setPage(i)} />
+                    </Table>
+                </>}
+                {user !== null && renderUser()}
         </div>
     );
 }
