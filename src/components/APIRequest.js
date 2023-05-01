@@ -8,6 +8,10 @@ Create the pages
 
 Task 6
 add preview button. On click to do request to https://reqres.in/api/users{id}
+
+Task 7
+add text area for filter with results by email.
+
 */
 
 export default function APIRequest() {
@@ -15,6 +19,7 @@ export default function APIRequest() {
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [user, setUser] = useState(null);
+    const [userInitials, setUserInitials] = useState([]);
 
     useEffect(() => {
         fetch('https://reqres.in/api/users?page=' + page)
@@ -22,6 +27,7 @@ export default function APIRequest() {
             .then(response => {
                 setTotalPages(response.total_pages);
                 setUsers(response.data);
+                setUserInitials(response.data);
             });
     }, [page]);
 
@@ -68,6 +74,16 @@ export default function APIRequest() {
     function renderTable() {
         return (
             <>
+                <div>
+                    <input type="text" onInput={(e) => {
+                        if (e.target.value.lenght > 0) {
+                            
+                        }
+                        else{
+                            setUsers([...userInitials]);
+                        }
+                    }} />
+                </div>
                 <table border={1}>
                     <thead>
                         <tr>
