@@ -35,11 +35,12 @@ export default function APIRequest() {
                     <img src={user.avatar} />
                 </td>
                 <td>
-                    <button onClick={()=>{
+                    <button onClick={() => {
                         fetch(`https://reqres.in/api/users/${user.id}`)
                             .then(response => response.json())
                             .then(response => {
-                                console.log(response);
+                                //console.log(response);
+                                setUser(response.data);
                             })
                     }}>Preview</button>
                 </td>
@@ -51,7 +52,10 @@ export default function APIRequest() {
         const pages = [];
         for (let i = 1; i <= totalPages; i++) {
             pages.push(
-                <li onClick={() => setPage(i)} key={i}>{i}</li>
+                <li className="page-button"
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => setPage(i)} key={i}>{i}
+                </li>
             );
         }
         return (
@@ -61,33 +65,56 @@ export default function APIRequest() {
         );
     }
 
+    function renderTable() {
+        return (
+            <>
+                <table border={1}>
+                    <thead>
+                        <tr>
+                            <td>
+                                Id:
+                            </td>
+                            <td>
+                                Email:
+                            </td>
+                            <td>
+                                Name:
+                            </td>
+                            <td>
+                                Image:
+                            </td>
+                            <td>
+                                Preview:
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {users.map(renderTr)}
+                    </tbody>
+                </table>
+                {renderPages()}
+            </>
+        );
+    }
+
+    function renderUser() {
+        return (
+            <>
+                <div>
+                    <img src={user.avatar} />
+                </div>
+                <div>{user.first_name}{user.last_name}</div>
+                <button onClick={() =>
+                    setUser(null)}>Back
+                </button>
+            </>
+        );
+    }
+
     return (
         <div>
-            <table border={1}>
-                <thead>
-                    <tr>
-                        <td>
-                            Id:
-                        </td>
-                        <td>
-                            Email:
-                        </td>
-                        <td>
-                            Name:
-                        </td>
-                        <td>
-                            Image:
-                        </td>
-                        <td>
-                            Preview:
-                        </td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {users.map(renderTr)}
-                </tbody>
-            </table>
-            {renderPages()}
+            {user === null && renderTable()}
+            {user !== null && renderUser()}
         </div>
     );
 }
