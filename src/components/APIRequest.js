@@ -97,7 +97,9 @@ export default function APIRequest() {
 
     return (
         <div>
-            {user === null && <Table></Table>}
+            {user === null && <Table users={users} handalePreview={(userId)=>{
+                handalePreview(userId)
+            }}></Table>}
             {user !== null && renderUser()}
         </div>
     );
