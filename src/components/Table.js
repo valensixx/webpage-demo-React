@@ -18,29 +18,32 @@ export default function Table(props) {
     }
 
     return (
-        <table border={1}>
-            <thead>
-                <tr>
-                    <td>
-                        Id:
-                    </td>
-                    <td>
-                        Email:
-                    </td>
-                    <td>
-                        Name:
-                    </td>
-                    <td>
-                        Image:
-                    </td>
-                    <td>
-                        Preview:
-                    </td>
-                </tr>
-            </thead>
-            <tbody>
-                {props.users.map(renderTr)}
-            </tbody>
-        </table>
+        <>
+            <table border={1}>
+                <thead>
+                    <tr>
+                        <td>
+                            Id:
+                        </td>
+                        <td>
+                            Email:
+                        </td>
+                        <td>
+                            Name:
+                        </td>
+                        <td>
+                            Image:
+                        </td>
+                        <td>
+                            Preview:
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {props.users.map(renderTr)}
+                </tbody>
+            </table>
+            {props.children}
+        </>
     );
 }

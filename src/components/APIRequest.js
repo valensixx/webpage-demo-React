@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import Table from "./Table";
+import Pagenation from "./Pagenation";
 
 /*TASK 5 
 Make request to https://reqres.in/api/users and show user's name,
@@ -86,6 +87,7 @@ export default function APIRequest() {
         <div>
             {user === null && <Table
                 users={users} handalePreview={(userId) => { handalePreview(userId) }}>
+                    <Pagenation totalPages = {totalPages} setPage={(i)=> setPage(i)} />
             </Table>}
             {user !== null && renderUser()}
         </div>
