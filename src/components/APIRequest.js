@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import Table from "./Table";
 import Pagenation from "./Pagenation";
 import Filters from "./Filters";
+import User from "./User";
 
 /*TASK 5 
 Make request to https://reqres.in/api/users and show user's name,
@@ -45,21 +46,6 @@ export default function APIRequest() {
             })
     }
 
-  
-    function renderUser() {
-        return (
-            <>
-                <div>
-                    <img src={user.avatar} />
-                </div>
-                <div>{user.first_name}{user.last_name}</div>
-                <button onClick={() =>
-                    setUser(null)}>Back
-                </button>
-            </>
-        );
-    }
-
     function onInput(e) {
         let input = e.target.value;
         if (input.length > 0) {
@@ -81,7 +67,7 @@ export default function APIRequest() {
                         <Pagenation totalPages={totalPages} setPage={(i) => setPage(i)} />
                     </Table>
                 </>}
-                {user !== null && renderUser()}
+            {user !== null && <User user={user} setUser={() => setUser(null)} />}
         </div>
     );
 }
