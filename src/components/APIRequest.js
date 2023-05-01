@@ -76,8 +76,10 @@ export default function APIRequest() {
             <>
                 <div>
                     <input type="text" onInput={(e) => {
-                        if (e.target.value.lenght > 0) {
-                            
+                        let input = e.target.value;
+                        if (input.lenght > 0) {
+                            const filteredUsers = userInitials.filter(user => user.email.includes(input));
+                            setUsers([...filteredUsers]); 
                         }
                         else{
                             setUsers([...userInitials]);
