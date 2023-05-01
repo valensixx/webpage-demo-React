@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import Table from "./Table";
 
 /*TASK 5 
 Make request to https://reqres.in/api/users and show user's name,
@@ -12,6 +13,8 @@ add preview button. On click to do request to https://reqres.in/api/users{id}
 Task 7
 add text area for filter with results by email.
 
+Task 8
+Redefine the code in a different components! 
 */
 
 export default function APIRequest() {
@@ -31,27 +34,13 @@ export default function APIRequest() {
             });
     }, [page]);
 
-    function renderTr(user, index) {
-        return (
-            <tr key={index}>
-                <td>{user.id}</td>
-                <td>{user.email}</td>
-                <td>{user.first_name} {user.last_name}</td>
-                <td>
-                    <img src={user.avatar} />
-                </td>
-                <td>
-                    <button onClick={() => {
-                        fetch(`https://reqres.in/api/users/${user.id}`)
-                            .then(response => response.json())
-                            .then(response => {
-                                //console.log(response);
-                                setUser(response.data);
-                            })
-                    }}>Preview</button>
-                </td>
-            </tr>
-        );
+    function handalePreview(userId){
+        fetch(`https://reqres.in/api/users/${userId}`)
+        .then(response => response.json())
+        .then(response => {
+            //console.log(response);
+            setUser(response.data);
+        })
     }
 
     function renderPages() {
@@ -86,30 +75,7 @@ export default function APIRequest() {
                         }
                     }} />
                 </div>
-                <table border={1}>
-                    <thead>
-                        <tr>
-                            <td>
-                                Id:
-                            </td>
-                            <td>
-                                Email:
-                            </td>
-                            <td>
-                                Name:
-                            </td>
-                            <td>
-                                Image:
-                            </td>
-                            <td>
-                                Preview:
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {users.map(renderTr)}
-                    </tbody>
-                </table>
+             
                 {renderPages()}
             </>
         );
@@ -131,7 +97,7 @@ export default function APIRequest() {
 
     return (
         <div>
-            {user === null && renderTable()}
+            {user === null && <Table></Table>}
             {user !== null && renderUser()}
         </div>
     );
